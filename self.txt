@@ -1,0 +1,132 @@
+Hi a very good afternoon, 
+my name is xxxx. I am from xxxx, 
+I have xx years of experience as software engineer. My resent company is xxxx. Over there I have worked in tech like python,django,restapi,mysql database 
+
+Introduction to the Project (Simple Safety)
+"The Simple Safety project is a web-based application designed to manage and track patient safety cases, particularly focusing on adverse events and clinical trial data.
+ The system stores information about patients, their medical history, adverse events, and drug reactions, which is essential for regulatory reporting and safety monitoring."
+
+import pdfplumber ,import json import ,xml.etree.ElementTree as ET
+Extract Text: Use pdfplumber to extract text directly from the PDF.
+Parse Data: Identify key-value pairs from the extracted text.
+Generate JSON: Map the extracted fields into a JSON object.
+Convert to XML: Transform the JSON into the required XML format.
+
+Workflow Example:
+Let’s go through a concrete workflow to understand how the whole process works:
+
+1.User uploads a PDF document through the front-end web interface.
+2.Backend service receives the PDF file, and by using PDF library (pdfplumber) to extract text 	data      from the document.
+3.The extracted text is processed and mapped to specific model fields (e.g., patient_id, name, 	age,   diagnosis, treatment), resulting in structured JSON data.
+4.Patient_id – inventation number with full name,date of birth and mobile number.
+5.The JSON data is validated to ensure that all required fields are correct.
+6.After validation, the JSON data is converted to XML format.
+7.The XML data is saved into the safety database, either by inserting it into a corresponding
+  into xml format to creata a case in database.
+
+
+In the Simple Safety project, coverting json file into xml file which  was responsible for the case creation and updating of patient records. My role involved handling the entire process of adding new patients into the system and ensuring that if a patient already existed, their case would be updated with the latest information. For new patients, I ensured that all relevant data (e.g., patient details, medical history, adverse events) was captured, and a unique patient ID was generated to link them to their case.
+
+If an existing patient was identified, I retrieved their record and added new details (such as updated medical history or adverse events). I implemented duplicate patient checks to prevent errors and ensure the integrity of the database.
+
+My work improved the efficiency of patient record management, ensuring that the system remained accurate and up-to-date, which is crucial for both patient safety and regulatory reporting."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Introduction to the Project (Simple Safety)
+•	Start by introducing the project to provide context. For example:
+•	"The Simple Safety project is a web-based application designed to manage and track patient safety cases, particularly focusing on adverse events and clinical trial data. The system stores information about patients, their medical history, adverse events, and drug reactions, which is essential for regulatory reporting and safety monitoring."
+
+________________________________________
+2. Role and Responsibilities
+•	Explain your specific role within the project:
+o	"As part of the development team, my role was primarily focused on case creation and updating patient records in the system, ensuring that the application efficiently handles patient data for both new and existing cases."
+________________________________________
+3. Case Creation Process for New Patients
+•	Detail the process for creating a new patient case:
+o	"When a new case is submitted, if the patient doesn't already exist in the system, a new patient record is created. This involves capturing patient details such as name, age, medical history, drug reactions, adverse events, etc. The system then generates a unique patient ID, which is used to identify and track that patient in the future."
+o	"The data is then structured and stored in the system’s database as part of a case object, linking the patient to any relevant clinical data (e.g., adverse event reports, drug safety information)."
+________________________________________
+4. Updating Existing Patient Records
+•	Explain how you handle updates for existing patients:
+o	"In the case of an existing patient, if the system identifies that a patient already exists based on a unique identifier (e.g., patient ID or personal details), the system will update the patient's record with the new data."
+o	"For example, if a new adverse event occurs or if there’s new medical history to report, the system updates the patient's case with this new information, maintaining historical integrity while ensuring that the case remains up-to-date."
+o	"The process involves verifying the patient ID, fetching the existing record, and appending the new information to the patient's case in the database."
+________________________________________
+5. Handling Edge Cases (Optional)
+•	Discuss how you handled edge cases, such as:
+o	Duplicate Patients: "If there is a risk of duplicate patient records (e.g., similar names or details), we implemented checks to prevent duplicate entries. This involves matching key attributes, like patient name, birthdate, and medical history, before proceeding with the case creation or update."
+o	Data Integrity: "We also implemented validation logic to ensure that any updates to the patient's record don't result in inconsistencies or data loss."
+________________________________________
+6. Technical Implementation
+•	Briefly mention the technologies or methods you used to implement this functionality (optional):
+o	"We used Django as our web framework with the Django ORM to handle database interactions. We leveraged model validation and queries to check for existing patient records and ensure that new data was properly saved or updated in the database."
+o	"Additionally, we utilized RESTful APIs for creating and updating cases, which allowed us to build a modular and scalable approach for handling patient data."
+________________________________________
+7. Challenges and Solutions
+
+•	Highlight any challenges you faced during the implementation and how you addressed them:
+o	"One of the main challenges was ensuring the accuracy of patient identification to avoid creating duplicate records or missing updates for existing patients. We solved this by implementing data validation and building a robust patient matching algorithm that checks key patient details before creating or updating records."
+
+o	"Another challenge was managing the complexity of large datasets, where updates to patient records could involve multiple interconnected fields. We implemented a clean and efficient data migration strategy to ensure that updates wouldn't compromise data integrity."
+________________________________________
+8. Key Achievements and Impact
+•	Conclude by discussing the impact of your work on the overall project:
+o	"My work in patient case creation and updating helped to streamline the process of managing patient safety data, reducing manual errors, and ensuring that all patient cases were up-to-date and compliant with regulatory standards."
+o	"This functionality ensures that medical personnel can quickly and accurately access the latest information for each patient, aiding in better decision-making and more timely reporting of adverse events."
+________________________________________
+
+Class-based Middleware: In Django, middleware can be implemented as a class. Your middleware class, VerifyRouteMiddleware, extends the base MiddlewareMixin class and implements the __init__ and __call__ methods.
+
+Request Processing: It is designed to run before the view is called. This middleware is checking whether certain conditions (like the presence of the authorization token) are met before the request is passed to the view.
+
+Full Example Flow:
+
+Client Sends Request: The client sends a request with a JWT token in the Authorization header:
+
+http
+Copy
+GET /api/protected-data HTTP/1.1
+Host: example.com
+Authorization: Bearer <JWT_TOKEN>
+Token Decoding: The JWT token is decoded using jwt.decode() to extract the upn (user email) and other claims such as auth_time.
+
+User Verification: The system checks if the user with the extracted email (upn) exists in the correct tenant.
+
+Session Expiry Check: The time of authentication (auth_time) is compared with the current time to see if the session has expired based on the configured session expiry time.
+
+Response:
+
+If the token is valid, the user exists, and the session is not expired, the request proceeds normally.
+If any step fails (token missing, invalid user, or session expired), a 401 Unauthorized response is returned.
+
+
+
+
+
+
+
+
+
+
+
